@@ -16,7 +16,7 @@ func SetupAPI(r web.Router, db *sql.DB) {
                   PostGroup, db)
 }
 
-func PostGroup(w http.ResponseWriter, q map[string]string, b string, db *sql.DB) {
+func PostGroup(w http.ResponseWriter, q map[string][]string, b string, db *sql.DB) {
     var err error
     defer func() {
         if err != nil {
