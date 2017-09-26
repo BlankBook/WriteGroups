@@ -31,12 +31,12 @@ func PostGroup(w http.ResponseWriter, q map[string][]string, b string, db *sql.D
     if err != nil {
         return
     }
-    query := `INSERT INTO Groups (`+models.GroupSQLColumns+`) Values ($1, $2, $3)`
+    query := `INSERT INTO Groups (`+models.GroupSQLColumns+`) Values ($1, $2, $3, $4)`
     protectedVal := 0
     if g.Protected {
         protectedVal = 1
     }
-    _, err = db.Exec(query, g.Name, protectedVal, g.Salt)
+    _, err = db.Exec(query, g.Name, protectedVal, g.PasswordTestHash, g.Salt)
     if err != nil {
         return
     }
